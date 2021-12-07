@@ -17,9 +17,10 @@
 
                 return true;
 
-            } else {
-                return false;
             }
+          
+            return false;
+
         }
 
         public function login($email, $senha){
@@ -34,9 +35,8 @@
                 $_SESSION['cLogin'] = $dado['id'];
                 return true;
 
-            } else {
-                return false;
             }
+            eturn false;
         }
     }
 ?>
