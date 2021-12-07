@@ -26,7 +26,7 @@
                     <li><a href="sair.php">Sair</a></li>
                                         
                 <?php else: ?>
-                <!-- SE ESTIVEREM LOGADOS DEVE APARECERO O QUE TEM ABAIXO-->
+                <!-- SE ESTIVEREM LOGADOS DEVE APARECERÁ O QUE TEM ABAIXO-->
                     <li><a href="cadastre-se.php">Cadastre-se</a></li>
                     <li><a href="login.php">Login</a></li> 
                 <?php endif; ?>
