@@ -21,7 +21,7 @@
                 <?php
             } else {
                 ?>
-                <div class="alert alert danger">
+                <div class="alert alert-warning">
                     Usuário ou senha errados!
                 </div>
                 <?php
