@@ -56,9 +56,9 @@
         </div>
         <div class="form-group">
             <label for="telefone">Seu telefone:</label>
-            <input type="text" name="telefone" id="telefone" class="form-control">
+            <input id="telefone" name='telefone' pattern="[0-9.]+" type="text" class='form-control' placeholder='xxxxxxxxxxx'>
         </div>
-        <input type="submit" value="Cadastrar" class='btn btn-default'>
+        <input type="submit" value="Cadastrar" class='btn btn-default' >
     </form>
 </div>
 
