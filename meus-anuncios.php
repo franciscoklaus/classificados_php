@@ -12,7 +12,7 @@
 <div class="container">
 
     <h1>Meus anúncios</h1>
-    <a href="add-anuncio.php" class='btn btn-default'>Adicionar anúncio</a>
+    <a href="add-anuncios.php" class='btn btn-default'>Adicionar anúncio</a>
     <table class="table table-striped">
         <thead>
             <tr>

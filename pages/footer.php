@@ -1,6 +1,3 @@
-<div class="footer">
-    RODAPÉ
-</div>
 
 
 <script rel="stylesheet" href="assets/js/scripts.js">   </script> 
