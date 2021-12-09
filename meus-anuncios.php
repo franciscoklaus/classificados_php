@@ -30,17 +30,18 @@
            foreach($anuncios as $anuncio):
         ?>
         <tr>
-            <td class='align-middle'>
+            <td class="align-middle">
                 <?php if(!empty($anuncio['url'])): ?>
-                <img src="assets/images/anuncios/<?php $anuncio['url']; ?>" height="50" border="0" alt='foto'>
+                    
+                <img src="assets/images/anuncios/<?php echo $anuncio['url'];?>" height="50" border="0" alt='foto'>
                 <?php else: ?>
                     <img src="assets/images/anuncios/no-pictures.png" height='50' border='0' alt="">
                 <?php endif; ?>
             </td>
             
-            <td class='align-middle'><?php echo $anuncio['titulo'];?></td>
-            <td class='align-middle'>R$ <?php echo number_format($anuncio['valor'],2);?></td>
-            <td class='align-middle'>
+            <td class="align-middle"><?php echo $anuncio['titulo'];?></td>
+            <td class="align-middle">R$ <?php echo number_format($anuncio['valor'],2);?></td>
+            <td class="align-middle">
                 <a href="editar-anuncio.php?id=<?php echo $anuncio['id'] ;?>" class='btn btn-default'>Editar</a>
                 <a href="excluir-anuncio.php?id=<?php echo $anuncio['id'] ;?>" class='btn btn-danger'>Excluir</a>
             </td>
