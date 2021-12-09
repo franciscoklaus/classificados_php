@@ -1,10 +1,10 @@
 <?php 
-    session_start();
+    require 'config.php';
     if(empty($_SESSION['cLogin'])){
         header("Location: login.php");
         exit;
     }
-require 'config.php';
+
 require 'classes/anuncios.class.php';
 $a = new Anuncios();
 

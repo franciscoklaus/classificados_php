@@ -30,7 +30,7 @@
            foreach($anuncios as $anuncio):
         ?>
         <tr>
-            <td>
+            <td class='align-middle'>
                 <?php if(!empty($anuncio['url'])): ?>
                 <img src="assets/images/anuncios/<?php $anuncio['url']; ?>" height="50" border="0" alt='foto'>
                 <?php else: ?>
@@ -38,9 +38,9 @@
                 <?php endif; ?>
             </td>
             
-            <td><?php echo $anuncio['titulo'];?></td>
-            <td>R$ <?php echo number_format($anuncio['valor'],2);?></td>
-            <td>
+            <td class='align-middle'><?php echo $anuncio['titulo'];?></td>
+            <td class='align-middle'>R$ <?php echo number_format($anuncio['valor'],2);?></td>
+            <td class='align-middle'>
                 <a href="editar-anuncio.php?id=<?php echo $anuncio['id'] ;?>" class='btn btn-default'>Editar</a>
                 <a href="excluir-anuncio.php?id=<?php echo $anuncio['id'] ;?>" class='btn btn-danger'>Excluir</a>
             </td>
