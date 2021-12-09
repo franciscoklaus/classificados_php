@@ -16,8 +16,13 @@
         $valor = addslashes($_POST['valor']);
         $descricao = addslashes($_POST['descricao']);
         $estado = addslashes($_POST['estado']);
+        if(isset($_FILES['fotos'])){
+            $fotos = $_FILES['fotos'];
+        } else {
+            $fotos = array();
+        }
 
-        $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $_GET['id']);
+        $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $_GET['id']);
         ?>
         <div class="alert alert-success">
             Produto editado com sucesso!
@@ -82,9 +87,14 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">Fotos do Anúncio</div>
-                <dib class="panel-body">
-                    
-                </dib>
+                <div class="panel-body">
+                    <?php foreach($info['fotos'] as $foto):?>
+                    <div class='foto_item'>
+                        <img src="assets/images/anuncios/<?php echo $foto['url'];?>" class='img-thumbnail' border='0' alt="imagem_foto"><br>
+                        <a href="excluir-foto.php?id=<?php echo $foto['id'];?>" class='btn btn-default'>Excluir imagem</a>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
         <input type="submit" value="Salvar" class='btn btn-default'>

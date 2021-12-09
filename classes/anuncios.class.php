@@ -48,18 +48,26 @@ class Anuncios{
     }
 
     public function getAnuncio($id){
-        global $pdo;
         $array = array();
+        global $pdo;
+        
         $sql = $pdo->prepare("SELECT * FROM anuncios WHERE id = :id");
         $sql->bindValue(":id", $id);
         $sql->execute();
         if($sql->rowCount() > 0){
             $array = $sql->fetch();
+            $array['fotos'] = array();
+            $sql = $pdo->prepare("SELECT id, url FROM anuncios_imagens WHERE id_anuncio = :id_anuncio");
+            $sql->bindValue("id_anuncio", $id);
+            $sql->execute();
+            if($sql->rowCount() > 0){
+                $array['fotos'] = $sql->fetchAll();
+            }
         }
         return $array;
     }
 
-    public function editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $id){
+    public function editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $id){
         global $pdo;
         $sql = $pdo->prepare("UPDATE anuncios SET titulo =:titulo,
         id_categoria = :id_categoria,
@@ -75,6 +83,47 @@ class Anuncios{
         $sql->bindValue(":estado", $estado);
         $sql->bindValue(":id", $id);
         $sql->execute();
+
+        if(count($fotos) > 0){
+            //print_r($fotos);
+            //exit;
+            for($q=0;$q<count($fotos['tmp_name']);$q++){
+                $tipo = $fotos['type'][$q];
+                if(in_array($tipo, array('image/jpeg', 'image/png'))){
+                    $tempname = md5(time().rand(0,999)).'.jpg';
+                    move_uploaded_file($fotos['tmp_name'][$q], 'assets/images/anuncios/'.$tempname);
+
+                    //REDIMENSIONAR O ARQUIVO
+                    list($width_orig, $height_orig) = getimagesize('assets/images/anuncios/'.$tempname);
+                    $ratio = $width_orig / $height_orig;
+
+                    $width = 500;
+                    $height = 500;
+
+                    if($width/$height > $ratio){
+                        $width = $height * $ratio;
+                    }else{
+                        $height = $width/$ratio;
+                    }
+
+                    $img = imagecreatetruecolor($width, $height);
+                    if($tipo =='image/jpeg'){
+                        $origem = imagecreatefromjpeg('assets/images/anuncios/'.$tempname);
+                    }elseif($tipo == 'image/png'){
+                        $origem = imagecreatefrompng('assets/images/anuncios/'.$tempname);
+                    }
+
+                    imagecopyresampled($img, $origem, 0, 0, 0, 0,$width, $height, $width_orig, $height_orig);
+                    imagejpeg($img, 'assets/images/anuncios/'.$tempname, 80);
+
+                    $sql = $pdo->prepare("INSERT INTO anuncios_imagens SET id_anuncio= :id_anuncio, url = :url");
+                    $sql->bindValue(":id_anuncio", $id);
+                    $sql->bindValue(":url", $tempname);
+                    $sql->execute();
+                }
+            
+            }
+        }
     }
 
 }
