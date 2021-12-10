@@ -1,3 +1,17 @@
+body{
+    height: 100vh;
+}
+
+.container{
+    min-height: calc(100vh - 50px);
+    margin:-22px;
+    padding:0;
+}
+
+form{
+    margin:0 auto;
+}
+
 .foto_item{
     width: 150px;
     height: 200px;
@@ -13,4 +27,10 @@
 
 td{
     vertical-align: middle !important;
+}
+
+.menu_pagination{
+    width:100%;
+    display: flex !important;
+    justify-content: center;
 }
